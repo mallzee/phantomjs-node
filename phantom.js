@@ -150,7 +150,7 @@
               _results = [];
               for (_j = 0, _len1 = phanta.length; _j < _len1; _j++) {
                 p = phanta[_j];
-                if (p !== ps.phantom) {
+                if (p.process.pid !== ps.phantom.process.pid) {
                   _results.push(p);
                 } else {
                  ps.phantom.exit();
@@ -173,9 +173,6 @@
         var d;
         d = dnode({}, options.dnodeOpts);
         d.on('remote', function(phantom) {
-          if (!phantom)
-          console.log()
-            
           phantom.process = ps;
           
           //add phantom to ps to avoid memory leakage in phanta
