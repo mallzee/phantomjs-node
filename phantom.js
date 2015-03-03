@@ -141,8 +141,8 @@
           var p;
           httpServer.close();
           if (ps.phantom) {
-            if (typeof phantom.onExit === "function") {
-              phantom.onExit();
+            if (typeof ps.phantom.onExit === "function") {
+              ps.phantom.onExit();
             }
             phanta = (function() {
               var _j, _len1, _results;
