@@ -144,7 +144,6 @@
             if (typeof ps.phantom.onExit === "function") {
               ps.phantom.onExit();
             }
-            console.log(phanta);
             phanta = (function() {
               var _j, _len1, _results;
               _results = [];
