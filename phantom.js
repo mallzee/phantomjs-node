@@ -140,7 +140,7 @@
         return ps.on('exit', function(code, signal) {
           var p;
           httpServer.close();
-          if (phantom) {
+          if (ps.phantom) {
             if (typeof phantom.onExit === "function") {
               phantom.onExit();
             }
@@ -149,12 +149,16 @@
               _results = [];
               for (_j = 0, _len1 = phanta.length; _j < _len1; _j++) {
                 p = phanta[_j];
-                if (p !== phantom) {
+                if (p !== ps.phantom) {
                   _results.push(p);
+                } else {
+                 ps.phantom.exit();
                 }
               }
               return _results;
             })();
+          } else {
+            console.log('WARNING! No phantom found on the PS object, memory leak imminent...');
           }
           if (options.onExit) {
             return options.onExit(code, signal);
@@ -170,6 +174,9 @@
         d.on('remote', function(phantom) {
           wrap(phantom);
           phantom.process = ps;
+          
+          //add phantom to ps to avoid memory leakage in phanta
+          ps.phantom = phantom;
           phanta.push(phantom);
           return typeof cb === "function" ? cb(phantom, null) : void 0;
         });
