@@ -152,7 +152,7 @@
                 if (p !== ps.phantom) {
                   _results.push(p);
                 } else {
-                 //ps.phantom.exit();
+                 ps.phantom.exit();
                 }
               }
               return _results;
@@ -172,11 +172,11 @@
         var d;
         d = dnode({}, options.dnodeOpts);
         d.on('remote', function(phantom) {
-          wrap(phantom);
           phantom.process = ps;
           
           //add phantom to ps to avoid memory leakage in phanta
           ps.phantom = phantom;
+          wrap(phantom);
           phanta.push(phantom);
           return typeof cb === "function" ? cb(phantom, null) : void 0;
         });
