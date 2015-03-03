@@ -152,7 +152,7 @@
                 if (p !== ps.phantom) {
                   _results.push(p);
                 } else {
-                 ps.phantom.exit();
+                 //ps.phantom.exit();
                 }
               }
               return _results;
