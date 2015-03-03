@@ -144,6 +144,7 @@
             if (typeof ps.phantom.onExit === "function") {
               ps.phantom.onExit();
             }
+            console.log(phanta);
             phanta = (function() {
               var _j, _len1, _results;
               _results = [];
@@ -172,6 +173,9 @@
         var d;
         d = dnode({}, options.dnodeOpts);
         d.on('remote', function(phantom) {
+          if (!phantom)
+          console.log()
+            
           phantom.process = ps;
           
           //add phantom to ps to avoid memory leakage in phanta
