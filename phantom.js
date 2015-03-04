@@ -137,7 +137,7 @@
             throw err;
           }
         });
-        return ps.on('exit', function(code, signal) {i
+        return ps.on('exit', function(code, signal) {
             var p;
           httpServer.close();
           if (ps.phantom) {
