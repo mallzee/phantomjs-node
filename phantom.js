@@ -137,8 +137,8 @@
             throw err;
           }
         });
-        return ps.on('exit', function(code, signal) {
-          var p;
+        return ps.on('exit', function(code, signal) {i
+            var p;
           httpServer.close();
           if (ps.phantom) {
             if (typeof ps.phantom.onExit === "function") {
@@ -153,6 +153,8 @@
                   _results.push(p);
                 } else {
                  ps.phantom.exit();
+                 ps.phantom = null;
+                 phanta[_j] = null;
                 }
               }
               return _results;
@@ -175,7 +177,10 @@
           phantom.process = ps;
           
           //add phantom to ps to avoid memory leakage in phanta
-          ps.phantom = phantom;
+          ps.getPhantom = function () {
+              return phantom;
+          }
+
           wrap(phantom);
           phanta.push(phantom);
           return typeof cb === "function" ? cb(phantom, null) : void 0;
