@@ -153,6 +153,8 @@
                   _results.push(p);
                 } else {
                  ps.phantom.exit();
+                 ps.phantom.process = null;
+                 ps.phantom = null;
                 }
               }
               return _results;
@@ -175,10 +177,7 @@
           phantom.process = ps;
           
           //add phantom to ps to avoid memory leakage in phanta
-          ps.getPhantom = function () {
-              return phantom;
-          }
-
+          ps.phantom = phantom;
           wrap(phantom);
           phanta.push(phantom);
           return typeof cb === "function" ? cb(phantom, null) : void 0;
