@@ -145,17 +145,20 @@
               ps.phantom.onExit();
             }
             phanta = (function() {
-              var _j, _len1, _results;
+              var _j, _len1, _results, found = false;
               _results = [];
               for (_j = 0, _len1 = phanta.length; _j < _len1; _j++) {
                 p = phanta[_j];
                 if (p.process.pid !== ps.phantom.process.pid) {
                   _results.push(p);
                 } else {
-                 ps.phantom.exit();
-                 ps.phantom.process = null;
-                 ps.phantom = null;
+                 found = true;
                 }
+              }
+
+              if (found) {
+                 ps.phantom.exit();
+                 ps.phantom = null;
               }
               return _results;
             })();
