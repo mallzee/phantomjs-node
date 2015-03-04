@@ -153,8 +153,6 @@
                   _results.push(p);
                 } else {
                  ps.phantom.exit();
-                 ps.phantom = null;
-                 phanta[_j] = null;
                 }
               }
               return _results;
